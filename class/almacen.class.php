@@ -36,6 +36,7 @@ class almacen {
 		}
 		$fetch = (strpos($sql, 'SELECT')!==false || strpos($sql, 'CALL')!==false || strpos($sql, 'SHOW')!==false) ? true : false;
 		$mode=(isset($mode)) ? $mode : "";
+		try{
 		$res = $this->db->prepare($sql);
 		$res->execute($array);
 		$row = ($fetch!==false) ? $res->fetchAll(\PDO::FETCH_ASSOC) : '';
