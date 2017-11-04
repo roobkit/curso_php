@@ -18,6 +18,16 @@ class almacen {
 	  (new self)->chivato($msg);
 	}
 
+	/**
+	 * Función generíca de consultas SQL por PDO
+	 * @param $array Array de valores PDO
+	 *        Tambipen puede ser utilizado como el parametro $mode si se utiliza como string
+	 * @param $mode string Sin argumento = array contínuo
+	 * 		 NO_INDEX = Devuelve un array sin la dimension 0
+	 * 		¡OJO! Si devuelve un valor numérico no será booleano
+	 * @return false en caso de error, empty para procedimientos y array de datos en SELECTS
+	 * Los procedimientos almacenados deben ser llamados con CALL y siempre devolverán fetchAll()
+	 * */
 	function datos($sql, $array=[], $mode=null){
 		//combinamos parametros para poder utiliarlos de forma más flexible
 		if(isset($array) && !is_array($array) && !isset($mode)){
@@ -26,26 +36,18 @@ class almacen {
 		}
 		$fetch = (strpos($sql, 'SELECT')!==false || strpos($sql, 'CALL')!==false || strpos($sql, 'SHOW')!==false) ? true : false;
 		$mode=(isset($mode)) ? $mode : "";
-		if($mode==1)
-		foreach ($array as $key=>$value)
-				$salida[':'.$key]=$value;
-		else
-			$salida = $array;
-		try {
 		$res = $this->db->prepare($sql);
-		$res->execute($salida);
+		$res->execute($array);
 		$row = ($fetch!==false) ? $res->fetchAll(\PDO::FETCH_ASSOC) : '';
-		if($mode==2)
-			$row = $this->db->lastInsertId();
-		if($mode==3 || $mode=='NO_INDEX')
+		if($mode=='NO_INDEX')
 			$row=$row[0];
-		} catch (Exception $e)	{
+		} catch (Exception $e){
 			 echo "algo ha fallado macho";
 			return false;
 		}
 		return($row);
 	}
-	
+
 	function __construct(){
 		if(!isset($this->db)){
 		$this->db = new \PDO('mysql:host=10.34.12.18;dbname=almacen', 'curso', 'hola', array(
