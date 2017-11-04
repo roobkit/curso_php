@@ -9,9 +9,9 @@ sleep(2);
 $obj = new sistema\almacen;
 $obj->di_esto("\n Ahora hablo yo dijo el método público di_esto() \n");
 sleep(2);
-$obj->di_esto("\n Mira estos pedidos \n");
+$obj->di_esto("\n Mira estos pedidos que nos mandan del almacén: \n");
 //datos
-$sql = "SELECT * FROM pedidos...";
+$sql = "SELECT * FROM pedidos";
 sleep(1);
 $datos = $obj->datos($sql);
 print_r($datos);
