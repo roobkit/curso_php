@@ -2,7 +2,6 @@
 namespace sistema;
 
 class almacen {
-
 	public function di_esto($msg){
 		echo "\n\n{$msg}\n\n";
 	}
@@ -12,11 +11,14 @@ class almacen {
 	}
 
 	public static function CSI($msg){
-	  self::chivato($msg);
+	 //esta depreciado llamar a métodos no estaticos de forma estatica tipo:
+	 // self::chivato($msg)
+	 // Como estamos en un método estático no podemos usar $this
+	 // nos vemos obligados a instanciar un nuevo objeto
+	  (new self)->chivato($msg);
 	}
 
 	function datos($sql, $array=[], $mode=null){
-
 		//combinamos parametros para poder utiliarlos de forma más flexible
 		if(isset($array) && !is_array($array) && !isset($mode)){
 			$mode=$array;
@@ -43,6 +45,7 @@ class almacen {
 		}
 		return($row);
 	}
+	
 	function __construct(){
 		if(!isset($this->db)){
 		$this->db = new \PDO('mysql:host=10.34.12.18;dbname=almacen', 'curso', 'hola', array(
