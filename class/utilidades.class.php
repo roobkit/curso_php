@@ -16,10 +16,10 @@ class utilidades extends sistema\almacen {
 	*									columna => tipo de dato donde:
 	*															'date' => fecha sin horas
 	*															'datetime' => fecha con horas
-	*				'file' => ruta completa al nombre del fichero, por defecto es la ruta estandard que buscara el js generaExcel de base.js
+	*				'ruta' => ruta completa al nombre del fichero, por defecto es la ruta estandard que buscara el js generaExcel de base.js
 	*/
 	   function sqlExcel($p, $o=null){
-		   require_once '/opt/lampp/htdocs/gm/includes/Classes/PHPExcel.php';
+		   require ("/opt/lampp/htdocs/curso_php/class/PHPExcel.php");
 		   set_time_limit(200);
 		   $row=1;
 		   if(!is_array($p))
@@ -114,7 +114,7 @@ class utilidades extends sistema\almacen {
 		   header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
 		   header ('Pragma: public'); // HTTP/1.0
 		   $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-		   $objWriter->save($o['file'].$o['nombre'].'.xlsx');
+		   $objWriter->save($o['ruta'].$o['nombre'].'.xlsx');
 		   return;
 	   }
 }

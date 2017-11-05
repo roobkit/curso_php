@@ -11,35 +11,34 @@ $sys = $obj = new sistema\almacen;
     Por eso normalemente se usa siempre una variable string facilmente reemplazable*/
 
  /* Opción varaible */
-$sql = "SELECT sum(PVP) as value, nombre as label FROM pedidos INNER JOIN clientes on pedidos.id_cliente = clientes.id_cliente
+$sql = "SELECT sum(PVC) as value, nombre as label FROM pedidos INNER JOIN clientes on pedidos.id_cliente = clientes.id_cliente
         GROUP BY nombre ORDER BY value DESC LIMIT 5";
+$datos = json_encode($sys->datos($sql));
 
 /* Opción constante */
-define("SQL_INGRESOS","SELECT sum(PVP) as value, nombre as label FROM pedidos INNER JOIN clientes on pedidos.id_cliente = clientes.id_cliente
+define("SQL_INGRESOS","SELECT sum(PVC) as value, nombre as label FROM pedidos INNER JOIN clientes on pedidos.id_cliente = clientes.id_cliente
         GROUP BY nombre ORDER BY value DESC LIMIT 5;");
-
-$datos = json_encode($sys->datos($sql));
 $datos = json_encode($sys->datos(SQL_INGRESOS));
+
+
 
 //Se genera un nuevo objeto gráfico
 $columnas = new grafico("column2d", "hash", "100%", 400, "contendor2", "json", '{
                 "chart":{
-                  "caption":"Facturación PVP cliente",
-                  "subCaption":"Detalle de los 5 mejores",
+                  "caption":"Top 5 Clientes por Facturación",
                   "numberPrefix":"€",
-                  "exportEnabled": "1",
-                  "theme":"zune"
+                  "theme":"ocean"
                 },
                 "data":'.$datos.'
             }');
-//damos paso al HTML necesario            
+//damos paso al HTML necesario
 ?>
 
 <html>
     <head>
         <title>Mi primer gráfico de Play School</title>
         <script type="text/javascript" src="./class/graficos/js/fusioncharts.js"></script>
-        <script type="text/javascript" src="./class/graficos/js/themes/fusioncharts.theme.zune.js"></script>
+        <script type="text/javascript" src="./class/graficos/js/themes/fusioncharts.theme.ocean.js"></script>
     </head>
     <body>
         <?php
