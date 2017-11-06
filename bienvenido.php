@@ -1,0 +1,2 @@
+<?php
+echo "BIENVENIDO AL CURSO PHP";
