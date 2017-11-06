@@ -2,8 +2,8 @@
 function mi_ayudante(){
     static $msg;
     if(empty($msg))
-        $msg = "Hola! ¿en qué te puedo ayudar?";
-        echo $msg.":";
+        $msg = "Escribe 'comandos' para ver la lista de cosas que puedo hacer\nHola! ¿en qué te puedo ayudar?";
+        echo "\n\n".$msg."\n:";
 
     switch(ask()){
         case "no":
@@ -14,7 +14,7 @@ function mi_ayudante(){
         exit;
         break;
         case "si":
-            $msg= "¿qué quieres que haga?";
+            $msg= "¿qué quieres que haga? ";
         break;
         case "comandos":
         case "puedes hacer":
@@ -27,8 +27,9 @@ function mi_ayudante(){
         break;
         case "/empresas":
             empresas:
-            echo "Dime la ruta donde quieres que te lo guarde:";
+            echo "Dime la ruta donde quieres que te lo guarde, (por defecto lo haré en la carpeta de informes):";
             $ruta = ask();
+            $ruta = (empty($ruta)) ? __DIR__."/informes/" : $ruta;
             echo "¿qué nombre le pongo? si no me dices nada lo llamaré 'informe' :";
             $nombre = ask();
             $nombre = (empty($nombre)) ? "informe" : $nombre;
