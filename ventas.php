@@ -1,6 +1,6 @@
 <?php
-require ($_SERVER["DOCUMENT_ROOT"]."/curso_php/class/almacen.class.php");
-include($_SERVER["DOCUMENT_ROOT"]."/curso_php/class/graficos/graficos.class.php");
+require (__DIR__."/class/almacen.class.php");
+include(__DIR__."/class/graficos/graficos.class.php");
 
 $sys = $obj = new sistema\almacen;
 

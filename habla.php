@@ -1,6 +1,6 @@
 <?php
-require ("/opt/lampp/htdocs/curso_php/class/almacen.class.php");
-require ("/opt/lampp/htdocs/curso_php/class/PHPExcel.php");
+require (__DIR__."/class/almacen.class.php");
+require (__DIR__."/class/PHPExcel.php");
 
 sistema\almacen::CSI("Como soy un metodo estático puedo usarme directamente sin instanciar");
 sleep(2);

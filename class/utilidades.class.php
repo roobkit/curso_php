@@ -19,7 +19,7 @@ class utilidades extends sistema\almacen {
 	*				'ruta' => ruta completa al nombre del fichero, por defecto es la ruta estandard que buscara el js generaExcel de base.js
 	*/
 	   function sqlExcel($p, $o=null){
-		   require ("/opt/lampp/htdocs/curso_php/class/PHPExcel.php");
+		   require (__DIR__."/PHPExcel.php");
 		   set_time_limit(200);
 		   $row=1;
 		   if(!is_array($p))
@@ -34,11 +34,7 @@ class utilidades extends sistema\almacen {
 
 		   $objPHPExcel = new PHPExcel();
 		   $objPHPExcel->getProperties()->setCreator("El departamento de marrones")
-										->setLastModifiedBy("El director")
 										->setTitle("Informe de almacen")
-										->setSubject("Informe de almacen")
-										->setDescription("Informe de almacen")
-										->setKeywords("office 2007 openxml php")
 										->setCategory("Informes");
 		   $objPHPExcel->setActiveSheetIndex(0);
 		   $excelStyle_titulo = [

@@ -1,9 +1,9 @@
 <?php
-require ("/opt/lampp/htdocs/curso_php/class/almacen.class.php");
-require ("/opt/lampp/htdocs/curso_php/class/utilidades.class.php");
+require (__DIR__."/class/almacen.class.php");
+require (__DIR__."/class/utilidades.class.php");
 
-$sql = "SELECT * FROM pedidos";
+$sql = "SELECT * FROM clientes";
 $utils = new utilidades;
-$utils -> sqlExcel($sql,['nombre'=>'informe','ruta'=>'/opt/lampp/htdocs/curso_php/']);
+$utils -> sqlExcel($sql,['nombre'=>'informe','ruta'=>__DIR__."/informes/"]);
 
 echo "\n\nDocumento creado con éxito ;)\n\n";
