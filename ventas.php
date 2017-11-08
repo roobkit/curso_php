@@ -11,19 +11,19 @@ $sys = $obj = new sistema\almacen;
     Por eso normalemente se usa siempre una variable string facilmente reemplazable*/
 
  /* Opción varaible */
-$sql = "SELECT sum(PVC) as value, nombre as label FROM pedidos INNER JOIN clientes on pedidos.id_cliente = clientes.id_cliente
-        GROUP BY nombre ORDER BY value DESC LIMIT 5";
+ $sql = "SELECT sum(PVC) as value, nombre as label FROM pedidos INNER JOIN clientes on pedidos.id_cliente = clientes.id_cliente
+        GROUP BY nombre ORDER BY value ASC LIMIT 2";
 $datos = json_encode($sys->datos($sql));
 
-/* Opción constante */
-define("SQL_INGRESOS","SELECT sum(PVC) as value, nombre as label FROM pedidos INNER JOIN clientes on pedidos.id_cliente = clientes.id_cliente
-        GROUP BY nombre ORDER BY value DESC LIMIT 5;");
-$datos = json_encode($sys->datos(SQL_INGRESOS));
+$datos = json_encode([0=>['label'=>"alcon viajes", 'value'=>'10000']]);
+
+
+//$datos = json_encode($sys->datos(SQL_INGRESOS));
 
 
 
 //Se genera un nuevo objeto gráfico
-$columnas = new grafico("column2d", "hash", "100%", 400, "contendor2", "json", '{
+$columnas = new grafico("column2d", "hash", "50%", 400, "contendor2", "json", '{
                 "chart":{
                   "caption":"Top 5 Clientes por Facturación",
                   "numberPrefix":"€",

@@ -20,6 +20,7 @@ class almacen {
 
 	/**
 	 * Función generíca de consultas SQL por PDO
+	 * @param $sql obligatorio string Es el SQL a ejecutar
 	 * @param $array Array de valores PDO
 	 *        Tambipen puede ser utilizado como el parametro $mode si se utiliza como string
 	 * @param $mode string Sin argumento = array contínuo
@@ -52,10 +53,8 @@ class almacen {
 	function __construct(){
 		if(!isset($this->db)){
 		$this->db = new \PDO('mysql:host=10.34.12.18;dbname=almacen', 'curso', 'hola', array(
-		  \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-			\PDO::ATTR_PERSISTENT => true
+
 		));
-		$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		}
 	}
 }

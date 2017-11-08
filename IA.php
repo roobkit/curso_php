@@ -42,4 +42,5 @@ function mi_ayudante(){
 function ask(){
     return strtolower(trim(fgets(STDIN)));
 }
+
 mi_ayudante();
