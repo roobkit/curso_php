@@ -2,8 +2,8 @@
 
 Ejemplos base para nuestro curso PHP de:  
 
-* Crear grÃ¡ficos
-* Solititar por consola contestaciÃ³n al usuario
+* Crear gráficos
+* Solititar por consola contestación al usuario
 * Crear excels directos y contra una BBDD
 
-# Â¡Gracias a tod@s!
+### ¡Gracias a tod@s!
