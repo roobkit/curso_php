@@ -1,10 +1,13 @@
 ##Preparacion del entorno
 ###Cuenta de usuario
+
 * Utilizaremos un cloud IDE
-	> https://codeanywhere.com
+
+> https://codeanywhere.com
 	
 * Para crear el usuario podemos utilizar cualquier cuenta asociada o crear una temporal
->	https://https://temp-mail.org/es/
+
+> https://https://temp-mail.org/es/
  
 ###Configuración del contenedor
  
