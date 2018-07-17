@@ -1,9 +1,86 @@
-# Bienvenido   
+##Preparacion del entorno
+###Cuenta de usuario
+* Utilizaremos un cloud IDE
+	> https://codeanywhere.com
+	
+* Para crear el usuario podemos utilizar cualquier cuenta asociada o crear una temporal
+>	https://https://temp-mail.org/es/
+ 
+###Configuraci贸n del contenedor
+ 
+1. Creamos un nuevo contenedor con el perfil PHP 7.0 asign谩ndole cualquier nombre
+2. Descargamos el repositorio de c贸digo del curso
 
-Ejemplos base para nuestro curso PHP de:  
 
-* Crear gr醘icos
-* Solititar por consola contestaci髇 al usuario
-* Crear excels directos y contra una BBDD
+```	
+git clone git@bitbucket.org:roobkit/curso_php.git 
+cd curso_php
+```	
 
-### racias a tod@s!
+###Configuraci贸n de los servicios
+
+####BASE DE DATOS
+
+Lo primero es cargar una base de datos inicial de ejemplo para el curso. Para ello utilizaremos mysql
+
+```
+sudo mysql < ./sql/almacen.sql
+```
+
+Otra posibilidad es ejecutar el documento desde phpmyadmin pero para ello deber铆amos tenerlo en local.
+
+A phpmyadmin se accede lanzando la web del contenedor en **[url]/phpmyadmin**
+
+Por defecto el usuario root no tiene constrase帽a, podemos pon茅rsela utilizando la sentancia
+
+```
+mysql -u root -e "SET PASSWORD=PASSWORD('hello');"
+```
+
+####WEB
+
+El repositorio tiene una estructura de directorios b谩sica en la que los documentos p煤blicos est谩n ubicados dentro de la carpeta public por lo que tendremos que decirle al servidor web que empiece a leer desde ah铆.
+
+En este caso el archivo de configuraci贸n esta en **/etc/httpd/conf/httpd.conf**
+
+> Si quer茅is utilizar **nano** como vuestro editor por defecto pod茅is instalarlo con yum install nano
+
+Una vez en el editor modificamos la carpeta del servidor web en las entradas
+
+* DocumentRoot "/home/cabox/workspace/curso_php/public"
+* \<Directory "/home/cabox/workspace/curso_php/public">
+
+> Con **pwd** pod茅is obtener la ruta de la posici贸n actual en consola
+
+Reiniciamos el servicio
+
+```
+sudo /etc/init.d/httpd restart
+```
+
+####PHP
+
+PHP ya puede funcionar gracias a que apache tiene configurado el m贸dulo correspondiente de php y es capaz de interpretar correctamente los documentos .php .
+
+Sin embargo existen multiples opciones adicionales para personalizar c贸mo debe funcionar php en nuestra m谩quina.
+
+En nuestro caso vamos a configurar la carpeta includes dentro del PATH. De esta forma php siempre tendr谩 en cuenta esta carpeta a la hora de buscar documentos.
+
+Editamos el archivo de configuraci贸n que esta en **/etc/php.ini** y configuramos el path y la opci贸n de mostrar errores display_errors
+
+Quedando:
+
+```
+display_errors = On
+include\_path = ".:/php/includes:/home/cabox/workspace/curso_php/includes" 
+```
+
+Reiniciamos apache
+
+```
+sudo /etc/init.d/httpd restart
+```
+
+
+
+

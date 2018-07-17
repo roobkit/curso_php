@@ -1,5 +1,5 @@
 <?php
-require (__DIR__."/class/PHPExcel.php");
+require ("../includes/class/PHPExcel.php");
 
 //algunos estilos
 
@@ -22,8 +22,27 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 //generamos fichefo
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-$nombre = "real_gana.xlsx";
-$objWriter->save(__DIR__."/informes/".$nombre);
 
-if(file_exists(__DIR__."/informes/".$nombre))
+$nombre = "real_gana.xlsx";
+$file = __DIR__."/informes/".$nombre;
+$objWriter->save($file);
+
+if(PHP_SAPI!='cli'){
+	header('Content-Description: File Transfer');
+	header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+	header("Content-Disposition: attachment; filename=\"".basename($file)."\"");
+	header("Content-Transfer-Encoding: binary");
+	header("Expires: 0");
+	header("Pragma: public");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header('Content-Length: ' . filesize($file)); //Remove
+
+	ob_clean();
+	flush();
+
+	readfile($file);
+	unlink($file);
+}else{
+	if(file_exists($file))
     echo "\n\nDocumento creado con éxito ;)\n\n";
+}

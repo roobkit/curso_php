@@ -1,5 +1,5 @@
 <?php
-include ("constantes.inc");
+include ("constantes.php");
 spl_autoload_register(function($clase) {
-	include "Classes/{$clase}.class.php";
+	include __DIR__."/class/{$clase}.class.php";
 });

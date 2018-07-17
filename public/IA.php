@@ -1,5 +1,8 @@
 <?php
-function mi_ayudante(){
+if(PHP_SAPI!='cli')
+	die('Esto solo funciona por consola');
+
+function aura(){
     static $msg;
     if(empty($msg))
         $msg = "Escribe 'comandos' para ver la lista de cosas que puedo hacer\nHola! ¿en qué te puedo ayudar?";
@@ -23,7 +26,7 @@ function mi_ayudante(){
             echo $msg;
             $res = ask();
             if($res=="si")
-            goto empresas;
+            	goto empresas;
         break;
         case "/empresas":
             empresas:
@@ -37,10 +40,11 @@ function mi_ayudante(){
 
         break;
     }
-    mi_ayudante();
+    aura();
 }
+
 function ask(){
     return strtolower(trim(fgets(STDIN)));
 }
 
-mi_ayudante();
+aura();
