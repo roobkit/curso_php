@@ -32,7 +32,7 @@ $columnas = new grafico("column2d", "hash", "50%", 400, "contendor2", "json", '{
         <?php
         //Lanzamos el gráfico preparado con el método render
 	        echo $columnas->render(); 
-			?>
+				?>
         <div id="contendor2">Aquí va el grafico</div>
     </body>
 </html>
