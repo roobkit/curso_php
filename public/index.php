@@ -1,10 +1,20 @@
 <?php
-include("autoload.php");
-$sys = new core;
+require("autoload.php");
 
-$pedidos=$sys->datos("SELECT * FROM pedidos");
 
-foreach ($pedidos as $key => $value){
-	print_r($value);
-	echo "<br />";
+class suma{
+	function mi_suma($param='CERRADO'){
+		$obj = new core;
+		$sql="SELECT SUM(valor) as ventas FROM pedidos WHERE estado= ? ";
+		$res = $obj->datos($sql,[$param], "NO_INDEX");
+		echo $res['ventas'];
+	}
 }
+
+$obj= new suma;
+
+$obj->mi_suma('ABIERTO');
+
+
+
+	

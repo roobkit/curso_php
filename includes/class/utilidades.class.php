@@ -1,5 +1,7 @@
 <?php
+
 class utilidades extends core{
+
 	/**
 	* Esta funcion genera un Excel desde un SQL dado.
 	*
@@ -18,6 +20,7 @@ class utilidades extends core{
 	*															'datetime' => fecha con horas
 	*				'ruta' => ruta completa al nombre del fichero, por defecto es la ruta estandard que buscara el js generaExcel de base.js
 	*/
+
 	   function sqlExcel($p, $o=null){
 		   require (__DIR__."/PHPExcel.php");
 		   set_time_limit(200);

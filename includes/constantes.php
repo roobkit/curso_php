@@ -1,3 +1,3 @@
 <?php
-const version = "0.0.0.0.1";
-const colores = ["rojo","verde","azul"];
+const VERSION = "0.0.0.0.1";
+const COLORES = ["rojo","verde","azul"];

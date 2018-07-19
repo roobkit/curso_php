@@ -1,11 +1,11 @@
 <?php
-$pass = getenv('PASS_SQL');
+$pass = getenv('USER_PAS');
 $user = getenv('USER_SQL');
 
 echo "usuario: ".$user."\n";
 echo "password: ".$pass."\n\n\n";
 
-$pass = $_SERVER['PASS_SQL'];
+$pass = $_SERVER['USER_PAS'];
 $user = $_SERVER['USER_SQL'];
 
 echo "usuario: ".$user."\n";

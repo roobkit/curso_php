@@ -1,21 +1,6 @@
 <?php
 class core {
-	public function di_esto($msg){
-		echo "\n\n{$msg}\n\n";
-	}
-
-	private function chivato($msg){
-		echo "\n\n{$msg}\n\n";
-	}
-
-	public static function CSI($msg){
-	 //esta depreciado llamar a métodos no estaticos de forma estatica tipo:
-	 // self::chivato($msg)
-	 // Como estamos en un método estático no podemos usar $this
-	 // nos vemos obligados a instanciar un nuevo objeto
-	  (new self)->chivato($msg);
-	}
-
+	
 	/**
 	 * Función generíca de consultas SQL por PDO
 	 * @param $sql obligatorio string Es el SQL a ejecutar
@@ -50,9 +35,7 @@ class core {
 
 	function __construct(){
 		if(!isset($this->db)){
-		$this->db = new \PDO('mysql:host=localhost;dbname=almacen', 'root', 'hello', array(
-
-		));
+			$this->db = new \PDO('mysql:host=localhost;dbname=almacen', 'root', 'hello', []);
 		}
 	}
 }

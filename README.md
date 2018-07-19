@@ -1,14 +1,13 @@
-[TOC]
 
-##Preparacion del entorno
-###Cuenta de usuario
+## Preparacion del entorno
+### Cuenta de usuario
 * Utilizaremos un cloud IDE
-	> https://codeanywhere.com
+> https://codeanywhere.com
 	
 * Para crear el usuario podemos utilizar cualquier cuenta asociada o crear una temporal
->	https://https://temp-mail.org/es/
+>	https://temp-mail.org/es/
  
-###Configuración del contenedor
+### Configuración del contenedor
  
 1. Creamos un nuevo contenedor con el perfil PHP 7.0 sobre CentOS asignándole cualquier nombre. Ej wonderland
 2. Descargamos el repositorio de código del curso y nos desplazamos al directorio creado
@@ -19,9 +18,9 @@ git clone git@bitbucket.org:roobkit/curso_php.git
 cd curso_php
 ```	
 
-###Configuración de los servicios
+### Configuración de los servicios
 
-####MySQL (BASE DE DATOS)
+#### MySQL (BASE DE DATOS)
 
 Lo primero es cargar una base de datos inicial de ejemplo para el curso. Para ello utilizaremos mysql
 
@@ -40,14 +39,13 @@ mysql -u root -e "SET PASSWORD=PASSWORD('hello');"
 ```
 
 
-
-####Apache2 (WEB)
+#### Apache2 (WEB)
 
 El repositorio tiene una estructura de directorios básica en la que los documentos públicos están ubicados dentro de la carpeta public por lo que tendremos que decirle al servidor web que empiece a leer desde ahí.
 
 En este caso el archivo de configuración esta en **/etc/httpd/conf/httpd.conf**
 
-> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con yum install nano
+> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con `# yum install nano`
 
 Una vez en el editor modificamos la carpeta del servidor web en las entradas
 
@@ -62,7 +60,7 @@ Reiniciamos el servicio
 sudo /etc/init.d/httpd restart
 ```
 
-####PHP 7.0
+#### PHP 7.0
 
 PHP ya funciona sin que hagamos nada gracias a que Apache tiene configurado el módulo correspondiente y es capaz de interpretar correctamente los documentos .php .
 
@@ -105,8 +103,8 @@ Dos tipos especiales:
 * resource
 * NULL
 
-###Variables I
-####Generales
+### Variables I
+#### Generales
 En PHP las variables se representan con un signo de dólar seguido por el nombre de la variable. El nombre de la variable es sensible a minúsculas y mayúsculas.
 
 ```
@@ -114,17 +112,17 @@ $cima = "Mont Blanc";
 
 ```
 
-####Arrays
+#### Arrays
 
 Un array en PHP es en realidad un mapa ordenado. Un mapa es un tipo de datos que asocia valores con claves. 
 
 Pueden ser indexados o asociativos
 
-####Arrays multidimensionales
+#### Arrays multidimensionales
 
 Los arrays pueden a su vez contener otros arrays formando matrices.
 
-####Constantes
+#### Constantes
 Una constante es un identificador (nombre) para un valor simple. Como el nombre sugiere, este valor no puede variar durante la ejecución del script (a excepción de las constantes mágicas, que en realidad no son constantes).
 
 Se puede definir una constante usando la función define() o con la palabra reservada const.
@@ -142,35 +140,35 @@ Antes de PHP 5.3, las constantes solo podían ser definidas usando la función d
 * Las constantes pueden ser definidas y accedidas desde cualquier ámbito sin importar las reglas de acceso de variables.
 * Las constantes no pueden ser redefinidas o eliminadas una vez se han definido
 
-####Constantes predefinidas
+#### Constantes predefinidas
 
-| Constante | definicion |
+| Constante | definicion |
 |-----|------|
-| \_\_LINE\_\_ | 	El número de línea actual en el fichero. |
-| _\_\_FILE\_\_ | 	Ruta completa y nombre del fichero con enlaces  simbólicos resueltos. Si se usa dentro de un include, devolverá el nombre del fichero incluido.|
-| \_\_DIR\_\_	| Directorio del fichero. Si se utiliza dentro de un include, devolverá el directorio del fichero incluído. Esta constante es igual que dirname(\_\_FILE\_\_). El nombre del directorio no lleva la barra final a no ser que esté en el directorio root.
-| \_\_FUNCTION\_\_	| Nombre de la función.|
-| \_\_CLASS\_\_	| Nombre de la clase. El nombre de la clase incluye el namespace declarado en (p.e.j. Foo\Bar). Tenga en cuenta que a partir de PHP 5.4 \_\_CLASS\_\_ también funciona con traits. Cuando es usado en un método trait, \_\_CLASS\_\_ es el nombre de la clase del trait que está siendo utilizado.|
-| \_\_TRAIT\_\_ | 	El nombre del trait. El nombre del trait incluye el espacio de nombres en el que fue declarado (p.e.j. Foo\Bar).
-| \_\_METHOD\_\_ |	Nombre del método de la clase.|
-| \_\_NAMESPACE\_\_	| Nombre del espacio de nombres actual.|
+| \_\_LINE\_\_ | 	El número de línea actual en el fichero. |
+| _\_\_FILE\_\_ | 	Ruta completa y nombre del fichero con enlaces  simbólicos resueltos. Si se usa dentro de un include, devolverá el nombre del fichero incluido.|
+| \_\_DIR\_\_	| Directorio del fichero. Si se utiliza dentro de un include, devolverá el directorio del fichero incluído. Esta constante es igual que dirname(\_\_FILE\_\_). El nombre del directorio no lleva la barra final a no ser que esté en el directorio root.
+| \_\_FUNCTION\_\_	| Nombre de la función.|
+| \_\_CLASS\_\_	| Nombre de la clase. El nombre de la clase incluye el namespace declarado en (p.e.j. Foo\Bar). Tenga en cuenta que a partir de PHP 5.4 \_\_CLASS\_\_ también funciona con traits. Cuando es usado en un método trait, \_\_CLASS\_\_ es el nombre de la clase del trait que está siendo utilizado.|
+| \_\_TRAIT\_\_ | 	El nombre del trait. El nombre del trait incluye el espacio de nombres en el que fue declarado (p.e.j. Foo\Bar).
+| \_\_METHOD\_\_ |	Nombre del método de la clase.|
+| \_\_NAMESPACE\_\_	| Nombre del espacio de nombres actual.|
 
-####Superglobales
+#### Superglobales
 Algunas variables predefinidas en PHP son "superglobales", lo que significa que están disponibles en todos los ámbitos a lo largo del script. 
 
-| Superglobal | Definición |
+| Superglobal | Definición |
 |----|----|
-| $GLOBALS | Es un array asociativo que contiene las referencias a todas la variables que están definidas en el ámbito global del script. Los nombres de las variables son las claves del array. |
-| $\_SERVER | es un array que contiene información, tales como cabeceras, rutas y ubicaciones de script. Las entradas de este array son creadas por el servidor web. Contiene índices especiales (ver documentación) |
-| $\_GET | Un array asociativo de variables pasado al script actual vía parámetros URL. |
-| $\_POST | Un array asociativo de variables pasadas al script actual a través del método POST de HTTP |
-| $\_FILES | Un array asociativo de elementos subidos al script en curso a través del método POST. |
-| $\_COOKIE | Una variable tipo array asociativo de variables pasadas al script actual a través de Cookies HTTP. |
-| $\_SESSION | Es un array asociativo que contiene variables de sesión disponibles para el script actual. Los datos se almacenan en el disco del servidor |
-| $\_REQUEST | contiene $\_GET, $\_POST y $\_COOKIE. |
-| $\_ENV | Información de variables de entorno |
+| $GLOBALS | Es un array asociativo que contiene las referencias a todas la variables que están definidas en el ámbito global del script. Los nombres de las variables son las claves del array. |
+| $\_SERVER | es un array que contiene información, tales como cabeceras, rutas y ubicaciones de script. Las entradas de este array son creadas por el servidor web. Contiene índices especiales (ver documentación) |
+| $\_GET | Un array asociativo de variables pasado al script actual vía parámetros URL. |
+| $\_POST | Un array asociativo de variables pasadas al script actual a través del método POST de HTTP |
+| $\_FILES | Un array asociativo de elementos subidos al script en curso a través del método POST. |
+| $\_COOKIE | Una variable tipo array asociativo de variables pasadas al script actual a través de Cookies HTTP. |
+| $\_SESSION | Es un array asociativo que contiene variables de sesión disponibles para el script actual. Los datos se almacenan en el disco del servidor |
+| $\_REQUEST | contiene $\_GET, $\_POST y $\_COOKIE. |
+| $\_ENV | Información de variables de entorno |
 
-####Estructuras de control
+#### Estructuras de control
 **Condicionales**
 
 * if
@@ -197,15 +195,15 @@ Algunas variables predefinidas en PHP son "superglobales", lo que significa que 
 * declare
 
 
-###Funciones
+### Funciones
 La función podría ser definida como un conjunto de instrucciones que permiten procesar las variables para obtener un resultado. 
 
 Cada función tiene su propio ámbito. Esto es que todo lo que se genera en una función nace y muere dentro de la función.
 
 Para poder comunicar el ámbito público con el ámbito local de una función utilizamos los **parámetros y retornos**.
 
-###Variables II
-####Ámbitos de las variables
+### Variables II
+#### Ámbitos de las variables
 El ámbito de una variable es el contexto dentro del que la variable está definida. La mayor parte de las variables PHP sólo tienen un ámbito simple. Este ámbito simple también abarca los ficheros incluídos y los requeridos. Por ejemplo:
 
 ```
@@ -232,7 +230,7 @@ test();
 ```
 
 
-###Clases y Objetos
+### Clases y Objetos
 
 **Una clase** es un conjunto de métodos (funciones) y propiedades (variables) que nos permiten organizar de una forma ordenada componentes de nuestro programa.
 
@@ -248,14 +246,14 @@ $obj2 = new mi_clase;
 
 ```
 
-####Propiedades
+#### Propiedades
 > Son las variables utilizadas en todo el ámbito de las clases.
 
-####Métodos
+#### Métodos
 > Son las funciones que contendrá la clase
 
 
-####Creación de clase
+#### Creación de clase
  
 Para crear una clase utilizamos la palabra `class { }` y dentro creamos nuestros métodos y propiedades al igual que hacemos en el ámbito global.
 
@@ -275,12 +273,12 @@ class mi_clase {
 
 > Las propiedades no llevan $ delante, solo lo lleva el objeto instanciado
 
-####Métodos mágicos
+#### Métodos mágicos
 Existen una serie de métodos reservados que no podemos declarar dentro de ningún objeto. Estos son:
 
 __construct(), __destruct(), __call(), __callStatic(), __get(), __set(), __isset(), __unset(), __sleep(), __wakeup(), __toString(), __invoke(), __set_state(), __clone() y __debugInfo() 
 
-####Herencias
+#### Herencias
 
 Una clase (hija) puede extender los métodos de otra clase (padre). Para ello utilizamos la palabra reservada extends. Ej
 
@@ -295,7 +293,7 @@ class reconquista extends don_pelayo {
 
 ```
 
-####Visibilidad
+#### Visibilidad
 
 Los métodos y propiedades pueden tener tres tipos de visibilidad privada, pública y protegida para lo que se utiliza la palabra reservada private, public y protected.
 
@@ -328,7 +326,7 @@ class reconquista extends don_pelayo {
 ```
 
 
-####Usar una clase en el ámbito global
+#### Usar una clase en el ámbito global
 
 Para usar sus métodos y propiedades se utiliza la flecha `->` . Ej:
 
@@ -351,7 +349,7 @@ $batalla->ataque(10);
 
 ```
 
-####La pseudo variable \$this
+#### La pseudo variable \$this
 
 Se utiliza dentro de una clase para referirse a sí misma ya que no existe un objeto con el que trabajar. Se sigue la misma sintáxis $this->[propiedad o método]
 
@@ -386,7 +384,4 @@ $go = $batalla->ataque(10);
 
 echo "\n\nIniciamos la reconquista con {$go} piedras!!! \n\n";
 ```
-
-?>
-
 
