@@ -5,7 +5,7 @@ $sys = $obj = new core;
 /*  Se genera la consulta SQL y se obtienen los datos */
 
 $sql = "SELECT sum(valor) as value, provincia as label FROM pedidos GROUP BY provincia ORDER BY value DESC limit 5";
-$sql = "SELECT count(id_pedido) as value, estado as label FROM pedidos GROUP BY estado";
+//$sql = "SELECT count(id_pedido) as value, estado as label FROM pedidos GROUP BY estado";
 $datos = json_encode($sys->datos($sql));
 
 /* Opción varaible */
@@ -14,7 +14,7 @@ $datos = json_encode($sys->datos($sql));
 //Se genera un nuevo objeto gráfico
 $columnas = new grafico("column2d", "hash", "50%", 400, "contendor2", "json", '{
                 "chart":{
-                  "caption":"Top 5 Provincias por Facturación",
+                  "caption":"Top Facturación",
                   "numberPrefix":"",
                   "theme":"ocean"
                 },

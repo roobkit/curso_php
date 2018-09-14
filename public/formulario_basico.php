@@ -6,7 +6,7 @@ echo "<form action='hola.php' method='POST'>
 					<input type='submit' value='Ver clientes'>
 			 </form>";
 
-if(isset($_POST['opcion'])){
+if(isset($_POST['opcion']) && validauser('director')){
 	$res = new core();
 	
 	switch($_POST['opcion']){
@@ -28,4 +28,3 @@ if(isset($_POST['opcion'])){
 	}
 
 }
-
