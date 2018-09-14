@@ -1,6 +1,16 @@
 <?php
 class core {
 	
+	function dos(){
+		$obj = new utilidades;
+	}
+	
+	function __construct(){
+		if(!isset($this->db)){
+			$this->db = new \PDO('mysql:host=localhost;dbname=almacen', 'root', 'hello', []);
+		}
+	}
+	
 	/**
 	 * Función generíca de consultas SQL por PDO
 	 * @param $sql obligatorio string Es el SQL a ejecutar
@@ -20,6 +30,7 @@ class core {
 		}
 		$fetch = (strpos($sql, 'SELECT')!==false || strpos($sql, 'CALL')!==false || strpos($sql, 'SHOW')!==false) ? true : false;
 		$mode=(isset($mode)) ? $mode : "";
+		
 		try{
 		$res = $this->db->prepare($sql);
 		$res->execute($array);
@@ -30,12 +41,7 @@ class core {
 			 echo "algo ha fallado macho";
 			return false;
 		}
+		
 		return($row);
-	}
-
-	function __construct(){
-		if(!isset($this->db)){
-			$this->db = new \PDO('mysql:host=localhost;dbname=almacen', 'root', 'hello', []);
-		}
 	}
 }
