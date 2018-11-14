@@ -1,15 +1,13 @@
-[TOC]
+## Preparacion del entorno
+### Cuenta de usuario
 
-##Preparacion del entorno
-###Cuenta de usuario
-* Utilizaremos un cloud IDE
+Utilizaremos un cloud IDE
 	> https://codenvy.com
 	
-* Para crear el usuario podemos utilizar cualquier cuenta asociada o crear una temporal
-
+Para crear el usuario podemos utilizar cualquier cuenta asociada o crear una temporal
 >	https://https://temp-mail.org/es/
  
-###Configuración del contenedor
+### Configuración del contenedor
  
 1. Configuramos un nuevo contenedor con el perfil PHP 7.0. Ej wonderland 
 2. Incorporamos el repositorio del curso
@@ -18,11 +16,10 @@
 
 Si no lo hemos incorporado antes de crear el contenedor podemos hacerlo desde la terminal con
 
-```
+```	
 cd /projects
 git clone https://bitbucket.org/roobkit/curso_php.git
-```
-	
+```	
 
 ###Configuración de los servicios
 
@@ -46,7 +43,7 @@ mysql -u root -e "SET PASSWORD=PASSWORD('hello');"
 
 
 
-####Apache2 (WEB)
+#### Apache2 (WEB)
 
 El repositorio tiene una estructura de directorios básica en la que los documentos públicos están ubicados dentro de la carpeta public por lo que tendremos que decirle al servidor web que empiece a leer desde ahí.
 
@@ -67,7 +64,7 @@ Reiniciamos el servicio
 sudo /etc/init.d/apache2 restart
 ```
 
-####PHP 7.0
+#### PHP 7.0
 
 PHP ya funciona sin que hagamos nada gracias a que Apache tiene configurado el módulo correspondiente y es capaz de interpretar correctamente los documentos .php .
 
@@ -94,8 +91,8 @@ Reiniciamos apache
 ```
 sudo /etc/init.d/httpd restart
 ```
-##Temario del curso
-###Tipos
+## Temario del curso
+### Tipos
 Cuatro tipos escalares:
 
 * boolean
@@ -115,8 +112,8 @@ Dos tipos especiales:
 * resource
 * NULL
 
-###Variables I
-####Generales
+### Variables I
+#### Generales
 En PHP las variables se representan con un signo de dólar seguido por el nombre de la variable. El nombre de la variable es sensible a minúsculas y mayúsculas.
 
 ```
@@ -124,17 +121,17 @@ $cima = "Mont Blanc";
 
 ```
 
-####Arrays
+#### Arrays
 
 Un array en PHP es en realidad un mapa ordenado. Un mapa es un tipo de datos que asocia valores con claves. 
 
 Pueden ser indexados o asociativos
 
-####Arrays multidimensionales
+#### Arrays multidimensionales
 
 Los arrays pueden a su vez contener otros arrays formando matrices.
 
-####Constantes
+#### Constantes
 Una constante es un identificador (nombre) para un valor simple. Como el nombre sugiere, este valor no puede variar durante la ejecución del script (a excepción de las constantes mágicas, que en realidad no son constantes).
 
 Se puede definir una constante usando la función define() o con la palabra reservada const.
@@ -152,7 +149,7 @@ Antes de PHP 5.3, las constantes solo podían ser definidas usando la función d
 * Las constantes pueden ser definidas y accedidas desde cualquier ámbito sin importar las reglas de acceso de variables.
 * Las constantes no pueden ser redefinidas o eliminadas una vez se han definido
 
-####Constantes predefinidas
+#### Constantes predefinidas
 
 | Constante | definicion |
 |-----|------|
@@ -165,7 +162,7 @@ Antes de PHP 5.3, las constantes solo podían ser definidas usando la función d
 | \_\_METHOD\_\_ |	Nombre del método de la clase.|
 | \_\_NAMESPACE\_\_	| Nombre del espacio de nombres actual.|
 
-####Superglobales
+#### Superglobales
 Algunas variables predefinidas en PHP son "superglobales", lo que significa que están disponibles en todos los ámbitos a lo largo del script. 
 
 | Superglobal | Definición |
@@ -180,7 +177,7 @@ Algunas variables predefinidas en PHP son "superglobales", lo que significa que 
 | $\_REQUEST | contiene $\_GET, $\_POST y $\_COOKIE. |
 | $\_ENV | Información de variables de entorno |
 
-####Estructuras de control
+#### Estructuras de control
 **Condicionales**
 
 * if
@@ -207,15 +204,15 @@ Algunas variables predefinidas en PHP son "superglobales", lo que significa que 
 * declare
 
 
-###Funciones
+### Funciones
 La función podría ser definida como un conjunto de instrucciones que permiten procesar las variables para obtener un resultado. 
 
 Cada función tiene su propio ámbito. Esto es que todo lo que se genera en una función nace y muere dentro de la función.
 
 Para poder comunicar el ámbito público con el ámbito local de una función utilizamos los **parámetros y retornos**.
 
-###Variables II
-####Ámbitos de las variables
+### Variables II
+#### Ámbitos de las variables
 El ámbito de una variable es el contexto dentro del que la variable está definida. La mayor parte de las variables PHP sólo tienen un ámbito simple. Este ámbito simple también abarca los ficheros incluídos y los requeridos. Por ejemplo:
 
 ```
@@ -242,7 +239,7 @@ test();
 ```
 
 
-###Clases y Objetos
+### Clases y Objetos
 
 **Una clase** es un conjunto de métodos (funciones) y propiedades (variables) que nos permiten organizar de una forma ordenada componentes de nuestro programa.
 
@@ -258,14 +255,14 @@ $obj2 = new mi_clase;
 
 ```
 
-####Propiedades
+#### Propiedades
 > Son las variables utilizadas en todo el ámbito de las clases.
 
-####Métodos
+#### Métodos
 > Son las funciones que contendrá la clase
 
 
-####Creación de clase
+#### Creación de clase
  
 Para crear una clase utilizamos la palabra `class { }` y dentro creamos nuestros métodos y propiedades al igual que hacemos en el ámbito global.
 
@@ -285,12 +282,12 @@ class mi_clase {
 
 > Las propiedades no llevan $ delante, solo lo lleva el objeto instanciado
 
-####Métodos mágicos
+#### Métodos mágicos
 Existen una serie de métodos reservados que no podemos declarar dentro de ningún objeto. Estos son:
 
 __construct(), __destruct(), __call(), __callStatic(), __get(), __set(), __isset(), __unset(), __sleep(), __wakeup(), __toString(), __invoke(), __set_state(), __clone() y __debugInfo() 
 
-####Herencias
+#### Herencias
 
 Una clase (hija) puede extender los métodos de otra clase (padre). Para ello utilizamos la palabra reservada extends. Ej
 
@@ -305,7 +302,7 @@ class reconquista extends don_pelayo {
 
 ```
 
-####Visibilidad
+#### Visibilidad
 
 Los métodos y propiedades pueden tener tres tipos de visibilidad privada, pública y protegida para lo que se utiliza la palabra reservada private, public y protected.
 
@@ -338,7 +335,7 @@ class reconquista extends don_pelayo {
 ```
 
 
-####Usar una clase en el ámbito global
+#### Usar una clase en el ámbito global
 
 Para usar sus métodos y propiedades se utiliza la flecha `->` . Ej:
 
@@ -395,9 +392,6 @@ $batalla = new reconquista;
 $go = $batalla->ataque(10);
 
 echo "\n\nIniciamos la reconquista con {$go} piedras!!! \n\n";
-
-
 ```
-
 
 
