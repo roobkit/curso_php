@@ -21,9 +21,9 @@ cd /projects
 git clone https://bitbucket.org/roobkit/curso_php.git
 ```	
 
-###Configuración de los servicios
+### Configuración de los servicios
 
-####MySQL (BASE DE DATOS)
+#### MySQL (BASE DE DATOS)
 
 Lo primero es cargar una base de datos inicial de ejemplo para el curso. Para ello utilizaremos mysql
 
@@ -53,8 +53,9 @@ En este caso el archivo de configuración esta en **/etc/apache2/sites-enabled/0
 
 Una vez en el editor modificamos la carpeta del servidor web en las entradas
 
-* DocumentRoot /projects/curso_php/public
-
+```
+DocumentRoot /projects/curso_php/public
+```
 
 > Con **pwd** podéis obtener la ruta de la posición actual en consola
 
@@ -358,7 +359,7 @@ $batalla->ataque(10);
 
 ```
 
-####La pseudo variable \$this
+#### La pseudo variable \$this
 
 Se utiliza dentro de una clase para referirse a sí misma ya que no existe un objeto con el que trabajar. Se sigue la misma sintáxis $this->[propiedad o método]
 
