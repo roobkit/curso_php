@@ -12,7 +12,7 @@ Para crear el usuario podemos utilizar cualquier cuenta asociada o crear una tem
 1. Configuramos un nuevo contenedor con el perfil PHP 7.0. Ej wonderland 
 2. Incorporamos el repositorio del curso
 
-> https://bitbucket.org/roobkit/curso_php.git
+> https://github.com/roobkit/curso_php.git
 
 Si no lo hemos incorporado antes de crear el contenedor podemos hacerlo desde la terminal con
 
