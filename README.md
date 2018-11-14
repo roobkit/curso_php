@@ -28,7 +28,8 @@ git clone https://bitbucket.org/roobkit/curso_php.git
 Lo primero es cargar una base de datos inicial de ejemplo para el curso. Para ello utilizaremos mysql
 
 ```
-sudo mysql < ./sql/almacen.sql
+sudo /etc/init.d/mysql start
+sudo mysql < ./curso_php/sql/almacen.sql
 ```
 
 Otra posibilidad es ejecutar el documento desde phpmyadmin pero para ello deberíamos tenerlo en local.
@@ -47,9 +48,17 @@ mysql -u root -e "SET PASSWORD=PASSWORD('hello');"
 
 El repositorio tiene una estructura de directorios básica en la que los documentos públicos están ubicados dentro de la carpeta public por lo que tendremos que decirle al servidor web que empiece a leer desde ahí.
 
-En este caso el archivo de configuración esta en **/etc/apache2/sites-enabled/000-default.conf**
+En este caso el archivo de configuración se puede abrir con 
 
-> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con sudo apt-get install nano
+```
+sudo nano /etc/apache2/sites-enabled/000-default.conf
+```
+
+> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con
+
+```
+sudo apt-get install nano
+```
 
 Una vez en el editor modificamos la carpeta del servidor web en las entradas
 
@@ -76,7 +85,7 @@ En nuestro caso vamos a configurar la carpeta includes dentro del PATH. De esta 
 Editamos el archivo de configuración  
 
 ```
-nano /etc/php/7.0/apache2/php.ini
+sudo nano /etc/php/7.0/apache2/php.ini
 ```
 y configuramos el *path* y la opción de mostrar errores *display_errors*
 
