@@ -1,5 +1,5 @@
 <?php
-require ("../includes/class/PHPExcel.php");
+require ("class/PHPExcel.php");
 
 //algunos estilos
 
