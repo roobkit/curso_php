@@ -70,10 +70,9 @@ DocumentRoot /projects/curso_php/public
 
 > Con **pwd** podéis obtener la ruta de la posición actual en consola
 
-Configuramos permisos de los directorios para el servicio de apache y añadimos al usuario al grupo www-data
+Configuramos permisos de los directorios para el servicio de apache
 ```
-usermod -g www-data user
-sudo chown -R www-data:www-data ./*
+sudo chown -R user:www-data ./*
 sudo chmod -R 770 ./*
 ``
 
