@@ -10,7 +10,7 @@ Para crear el usuario podemos utilizar cualquier cuenta asociada o crear una tem
 ### Configuración del contenedor
  
 1. Configuramos un nuevo contenedor con el perfil PHP 7.0. Ej wonderland 
-2. Incorporamos el repositorio del curso
+2. Incorporamos el proyecto del curso descargándolo del repositorio (add project)
 
 > https://github.com/roobkit/curso_php.git
 
@@ -28,7 +28,8 @@ git clone https://bitbucket.org/roobkit/curso_php.git
 Lo primero es cargar una base de datos inicial de ejemplo para el curso. Para ello utilizaremos mysql
 
 ```
-sudo mysql < ./sql/almacen.sql
+sudo /etc/init.d/mysql start
+sudo mysql < ./curso_php/sql/almacen.sql
 ```
 
 Otra posibilidad es ejecutar el documento desde phpmyadmin pero para ello deberíamos tenerlo en local.
@@ -45,11 +46,21 @@ mysql -u root -e "SET PASSWORD=PASSWORD('hello');"
 
 #### Apache2 (WEB)
 
+
+> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con
+
+```
+sudo apt-get update
+sudo apt-get install nano
+```
+
 El repositorio tiene una estructura de directorios básica en la que los documentos públicos están ubicados dentro de la carpeta public por lo que tendremos que decirle al servidor web que empiece a leer desde ahí.
 
-En este caso el archivo de configuración esta en **/etc/apache2/sites-enabled/000-default.conf**
+En este caso el archivo de configuración se puede abrir con 
 
-> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con sudo apt-get install nano
+```
+sudo nano /etc/apache2/sites-enabled/000-default.conf
+```
 
 Una vez en el editor modificamos la carpeta del servidor web en las entradas
 
@@ -58,6 +69,12 @@ DocumentRoot /projects/curso_php/public
 ```
 
 > Con **pwd** podéis obtener la ruta de la posición actual en consola
+
+Configuramos permisos de los directorios para el servicio de apache
+```
+sudo chown -R user:www-data ./*
+sudo chmod -R 770 ./*
+``
 
 Reiniciamos el servicio
 
@@ -73,10 +90,15 @@ Sin embargo existen multiples opciones adicionales para personalizar cómo debe 
 
 En nuestro caso vamos a configurar la carpeta includes dentro del PATH. De esta forma php siempre tendrá en cuenta esta carpeta a la hora de buscar documentos.
 
+Instalamos algunas características que no vienen por defecto y configuramos permisos de lectura para apache
+```
+sudo apt-get install php7.0-zip
+```
+
 Editamos el archivo de configuración  
 
 ```
-nano /etc/php/7.0/apache2/php.ini
+sudo nano /etc/php/7.0/apache2/php.ini
 ```
 y configuramos el *path* y la opción de mostrar errores *display_errors*
 
