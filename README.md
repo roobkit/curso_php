@@ -46,18 +46,20 @@ mysql -u root -e "SET PASSWORD=PASSWORD('hello');"
 
 #### Apache2 (WEB)
 
+
+> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con
+
+```
+sudo apt-get update
+sudo apt-get install nano
+```
+
 El repositorio tiene una estructura de directorios básica en la que los documentos públicos están ubicados dentro de la carpeta public por lo que tendremos que decirle al servidor web que empiece a leer desde ahí.
 
 En este caso el archivo de configuración se puede abrir con 
 
 ```
 sudo nano /etc/apache2/sites-enabled/000-default.conf
-```
-
-> Si queréis utilizar **nano** como vuestro editor por defecto podéis instalarlo con
-
-```
-sudo apt-get install nano
 ```
 
 Una vez en el editor modificamos la carpeta del servidor web en las entradas
@@ -67,6 +69,13 @@ DocumentRoot /projects/curso_php/public
 ```
 
 > Con **pwd** podéis obtener la ruta de la posición actual en consola
+
+Configuramos permisos de los directorios para el servicio de apache y añadimos al usuario al grupo www-data
+```
+usermod -g www-data user
+sudo chown -R www-data:www-data ./*
+sudo chmod -R 770 ./*
+``
 
 Reiniciamos el servicio
 
@@ -81,6 +90,11 @@ PHP ya funciona sin que hagamos nada gracias a que Apache tiene configurado el m
 Sin embargo existen multiples opciones adicionales para personalizar cómo debe funcionar php en nuestra máquina.
 
 En nuestro caso vamos a configurar la carpeta includes dentro del PATH. De esta forma php siempre tendrá en cuenta esta carpeta a la hora de buscar documentos.
+
+Instalamos algunas características que no vienen por defecto y configuramos permisos de lectura para apache
+```
+sudo apt-get install php7.0-zip
+```
 
 Editamos el archivo de configuración  
 
