@@ -1,6 +1,6 @@
 <?php
 require ("autoload.php");
-$sys = $obj = new core;
+$sys = new core;
 
 /*  Se genera la consulta SQL y se obtienen los datos */
 
@@ -12,7 +12,7 @@ $datos = json_encode($sys->datos($sql));
 //$datos = json_encode([0=>['label'=>"alcon viajes", 'value'=>'10000']]);
 
 //Se genera un nuevo objeto gráfico
-$columnas = new grafico("column2d", "hash", "50%", 400, "contendor2", "json", '{
+$columnas = new grafico("column2d", "hash", "25%", "50%", "contendor2", "json", '{
                 "chart":{
                   "caption":"Top Facturación",
                   "numberPrefix":"",

@@ -10,7 +10,7 @@ if(isset($_POST['opcion'])){
 	$res = new core();
 	
 	switch($_POST['opcion']){
-		case 'nodos':
+		default:
 			$sql="SELECT * FROM clientes ";
 			$target="correo";
 		break;
