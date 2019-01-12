@@ -74,7 +74,7 @@ Configuramos permisos de los directorios para el servicio de apache
 ```
 sudo chown -R user:www-data ./*
 sudo chmod -R 770 ./*
-``
+```
 
 Reiniciamos el servicio
 
@@ -141,7 +141,6 @@ En PHP las variables se representan con un signo de dólar seguido por el nombre
 
 ```
 $cima = "Mont Blanc";
-
 ```
 
 #### Arrays
@@ -160,9 +159,8 @@ Una constante es un identificador (nombre) para un valor simple. Como el nombre 
 Se puede definir una constante usando la función define() o con la palabra reservada const.
 
 ```
-	define("BICI_CARRETERA","DOGMA F8");
-	const BICI_MTB = "SWORKS EPIC";
-
+define("BICI_CARRETERA","DOGMA F8");
+const BICI_MTB = "SWORKS EPIC";
 ```
 
 Estas son las principales diferencias entre constantes y variables:
